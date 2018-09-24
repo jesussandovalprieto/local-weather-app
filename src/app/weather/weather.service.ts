@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { ICurrentWeather } from '../interfaces';
 import { map } from 'rxjs/operators';
+import { IWeatherService } from './weather.service.fake';
 
 interface ICurrentWeatherData {
   weather: [{
@@ -22,7 +23,7 @@ interface ICurrentWeatherData {
 @Injectable({
   providedIn: 'root'
 })
-export class WeatherService {
+export class WeatherService implements IWeatherService {
 
   constructor(private httpClient: HttpClient) {
 
@@ -48,7 +49,7 @@ export class WeatherService {
     };
   }
 
-    private convertKelvinToFahrenheit(kelvin: number): number {
-      return kelvin * 9 / 5 - 459.67;
-    }
+  private convertKelvinToFahrenheit(kelvin: number): number {
+    return kelvin * 9 / 5 - 459.67;
+  }
 }
