@@ -2,7 +2,9 @@ import { Observable, of } from 'rxjs';
 import { ICurrentWeather } from '../interfaces';
 
 export interface IWeatherService {
-  getCurrentWeather(city: string, country: string): Observable<ICurrentWeather>;
+  getCurrentWeather(search: string | number, country?: string): Observable<ICurrentWeather>;
+  getCurrentWeatherHelper(uriParams: string): Observable<ICurrentWeather>;
+  getCurrentWeatherByCoords(coords: Coordinates): Observable<ICurrentWeather>;
 }
 
 export class WeatherServiceFake implements IWeatherService {
@@ -15,7 +17,15 @@ export class WeatherServiceFake implements IWeatherService {
     description: 'light intensity drizzle'
   };
 
-  public getCurrentWeather(city: string, country: string): Observable<ICurrentWeather> {
+  public getCurrentWeather(search: string | number, country?: string): Observable<ICurrentWeather> {
+    return of(this.fakeWeather);
+  }
+
+  public getCurrentWeatherHelper(uriParams: string): Observable<ICurrentWeather> {
+    return of(this.fakeWeather);
+  }
+
+  public getCurrentWeatherByCoords(coords: Coordinates): Observable<ICurrentWeather> {
     return of(this.fakeWeather);
   }
 }
