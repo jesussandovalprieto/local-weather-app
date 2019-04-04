@@ -32,6 +32,7 @@ export class WeatherService implements IWeatherService {
 
   getCurrentWeather(search: string | number, country?: string): Observable<ICurrentWeather> {
     let uriParams = '';
+    // Comment to test commit.
     if (typeof search === 'string') {
       uriParams = `q=${search}`;
     } else {
